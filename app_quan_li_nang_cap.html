@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f2440">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>SaveMate — Quản lý chi tiêu thông minh</title>
+<style>
+:root{--blue:#328bd0;--blue2:#eaf5ff;--navy:#17324d;--ink:#24364b;--muted:#8191a5;--line:#e8eef5;--bg:#f5f8fc;--white:#fff;--green:#20a779;--orange:#ed9b45;--red:#e56d70;--shadow:0 10px 30px rgba(34,73,112,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer;border:0}.app{display:flex;min-height:100vh}.sidebar{width:245px;background:#fff;border-right:1px solid var(--line);padding:25px 17px;position:fixed;inset:0 auto 0 0;display:flex;flex-direction:column;z-index:5}.brand{display:flex;align-items:center;gap:11px;padding:0 10px 30px;font-size:21px;font-weight:800;color:var(--navy);letter-spacing:-.6px}.brandmark{width:37px;height:37px;border-radius:12px;background:linear-gradient(135deg,#56b4ed,#267ac4);display:grid;place-items:center;color:white;font-size:20px;box-shadow:0 6px 14px #328bd044}.brand small{display:block;font-size:10px;color:var(--muted);font-weight:600;letter-spacing:1.5px;margin-top:1px}.nav-label{font-size:10px;font-weight:800;color:#a0adbb;letter-spacing:1.3px;padding:10px 12px}.nav{display:grid;gap:5px}.nav button{background:transparent;color:#718198;text-align:left;padding:12px 13px;border-radius:11px;display:flex;align-items:center;gap:12px;font-weight:650;font-size:13px;transition:.2s}.nav button:hover{background:#f3f8fd;color:var(--blue)}.nav button.active{background:var(--blue2);color:#237cc1}.nav .ico{width:20px;text-align:center;font-size:17px}.side-bottom{margin-top:auto;background:#f4f9fe;border:1px solid #e6f1fa;border-radius:15px;padding:15px}.side-bottom strong{font-size:12px}.side-bottom p{font-size:11px;color:var(--muted);line-height:1.5;margin:7px 0 0}.main{margin-left:245px;width:calc(100% - 245px);padding:28px 34px 50px;max-width:1600px}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}.eyebrow{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.7px;text-transform:uppercase}.topbar h1{font-size:25px;letter-spacing:-.7px;margin:5px 0 0;color:var(--navy)}.top-actions{display:flex;align-items:center;gap:10px}.month-select,.icon-btn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 13px;color:#60748a;font-size:12px}.avatar{width:36px;height:36px;border-radius:50%;background:#d9edff;color:#267cc0;display:grid;place-items:center;font-weight:800;font-size:12px}.page{display:none}.page.active{display:block}.grid{display:grid;gap:17px}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.card{background:#fff;border:1px solid var(--line);border-radius:17px;padding:19px;box-shadow:var(--shadow)}.stat-card{position:relative;overflow:hidden}.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px;font-weight:650}.stat-icon{width:34px;height:34px;border-radius:11px;background:#eff7ff;display:grid;place-items:center;font-size:16px}.stat-value{font-size:24px;font-weight:800;color:var(--navy);margin:13px 0 5px;letter-spacing:-.6px}.stat-foot{font-size:11px;color:var(--muted)}.positive{color:var(--green);font-weight:700}.negative{color:var(--red);font-weight:700}.overview-grid{grid-template-columns:1.55fr 1fr;margin-bottom:18px}.card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}.card-head h3{margin:0;color:var(--navy);font-size:14px}.card-head p{margin:4px 0 0;font-size:11px;color:var(--muted)}.link-btn{background:transparent;color:var(--blue);font-size:11px;font-weight:750}.goal-card{background:linear-gradient(135deg,#fff 0%,#f7fbff 100%)}.goal-main{display:flex;align-items:center;gap:20px}.ring{width:124px;height:124px;flex:none;position:relative;display:grid;place-items:center}.ring svg{position:absolute;inset:0;transform:rotate(-90deg)}.ring .ring-text{text-align:center;z-index:1}.ring strong{font-size:25px;color:var(--navy);display:block}.ring span{font-size:10px;color:var(--muted)}.goal-info{flex:1;min-width:0}.goal-info h2{font-size:17px;margin:0 0 5px;color:var(--navy)}.goal-info p{font-size:11px;color:var(--muted);margin:0 0 15px}.goal-numbers{display:flex;gap:24px;flex-wrap:wrap}.goal-numbers b{display:block;font-size:15px;color:var(--navy)}.goal-numbers span{font-size:10px;color:var(--muted)}.goal-actions{display:flex;gap:8px;margin-top:17px}.primary{background:var(--blue);color:#fff;padding:10px 14px;border-radius:10px;font-weight:750;font-size:11px;box-shadow:0 5px 12px #328bd033}.secondary{background:#edf6fd;color:#287dbb;padding:10px 14px;border-radius:10px;font-weight:750;font-size:11px}.chart-wrap{height:190px;position:relative}.chart-wrap canvas{width:100%;height:100%}.budget-list{display:grid;gap:16px}.budget-row .budget-meta{display:flex;justify-content:space-between;font-size:11px;margin-bottom:7px}.budget-meta strong{color:var(--navy)}.budget-meta span{color:var(--muted)}.bar{height:8px;background:#edf2f7;border-radius:20px;overflow:hidden}.bar span{height:100%;display:block;border-radius:20px;background:var(--blue)}.bar span.warn{background:var(--orange)}.bar span.danger{background:var(--red)}.bottom-grid{grid-template-columns:1.25fr .75fr}.transactions{width:100%;border-collapse:collapse}.transactions th{text-align:left;font-size:10px;color:#9aa8b7;font-weight:700;padding:0 8px 12px}.transactions td{padding:12px 8px;border-top:1px solid #f0f3f7;font-size:11px}.tx-name{display:flex;align-items:center;gap:9px;font-weight:700;color:#3a4b60}.tx-icon{width:30px;height:30px;border-radius:10px;background:#f0f7fd;display:grid;place-items:center}.tx-cat{color:var(--muted)}.amount{font-weight:800;text-align:right;white-space:nowrap}.amount.expense{color:#d56d72}.amount.income{color:var(--green)}.score-box{background:linear-gradient(135deg,#eaf6ff,#f5fbff);border-radius:14px;padding:17px;display:flex;align-items:center;gap:14px}.score-number{font-size:34px;font-weight:850;color:#267fc2}.score-box h4{margin:0 0 4px;font-size:13px;color:var(--navy)}.score-box p{margin:0;font-size:10px;color:var(--muted);line-height:1.5}.achievement-list{display:grid;gap:12px;margin-top:16px}.achievement{display:flex;align-items:center;gap:10px}.ach-icon{width:34px;height:34px;border-radius:11px;background:#fff5e8;display:grid;place-items:center}.achievement strong{font-size:11px;display:block}.achievement span{font-size:10px;color:var(--muted)}.page-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.page-heading h2{margin:0;color:var(--navy);font-size:20px}.page-heading p{margin:5px 0 0;color:var(--muted);font-size:11px}.goal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.goal-item{display:flex;gap:15px;align-items:center}.goal-item .ring{width:90px;height:90px}.goal-item .ring strong{font-size:19px}.goal-item h3{font-size:14px;margin:0 0 5px}.goal-item p{font-size:11px;color:var(--muted);margin:0 0 9px}.goal-item .goal-numbers{gap:14px}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}.filters input,.filters select,.field input,.field select{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;color:var(--ink);font-size:12px;outline:none}.filters input:focus,.field input:focus,.field select:focus{border-color:#83bde8;box-shadow:0 0 0 3px #328bd015}.filters input{min-width:180px}.table-wrap{overflow-x:auto}.full-table{width:100%;border-collapse:collapse;min-width:570px}.full-table th{text-align:left;padding:12px 10px;color:#9aa8b7;font-size:10px}.full-table td{padding:13px 10px;border-top:1px solid #f0f3f7;font-size:11px}.pill{padding:5px 8px;border-radius:20px;font-size:10px;font-weight:750;background:#edf7ff;color:#2b83c4}.pill.in{background:#eaf8f2;color:#22966c}.pill.out{background:#fff0f0;color:#d66c72}.calendar-layout{grid-template-columns:1fr 300px}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.day-name{text-align:center;color:var(--muted);font-size:10px;padding:7px}.day{min-height:75px;background:#fbfdff;border:1px solid #edf1f6;border-radius:10px;padding:8px;font-size:11px;color:#52657a}.day.today{border-color:#69b3e6;background:#f0f8ff}.day small{display:block;margin-top:9px;font-size:9px;color:var(--red)}.day .in-small{color:var(--green)}.empty{padding:30px;text-align:center;color:var(--muted);font-size:12px}.modal-backdrop{display:none;position:fixed;inset:0;background:#14283d77;z-index:20;align-items:center;justify-content:center;padding:18px}.modal-backdrop.show{display:flex}.modal{background:#fff;border-radius:18px;padding:23px;width:min(440px,100%);box-shadow:0 25px 70px #14283d33}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.modal-head h3{margin:0;font-size:17px;color:var(--navy)}.close{background:#f2f5f8;border-radius:8px;width:30px;height:30px;color:#718198;font-size:18px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:10px;font-weight:750;color:#6d7e92}.field input,.field select{width:100%}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.toast{position:fixed;right:24px;top:82px;background:#183b59;color:white;padding:12px 16px;border-radius:11px;font-size:12px;box-shadow:var(--shadow);z-index:40;opacity:0;transform:translateY(-8px);transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translateY(0)}.muted{color:var(--muted)}.small-note{font-size:10px;color:var(--muted);line-height:1.6}.settings-grid{grid-template-columns:1fr 1fr}.setting-row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);font-size:12px}.setting-row:last-child{border:0}.danger-btn{background:#fff0f0;color:#cf666c;padding:9px 12px;border-radius:9px;font-size:11px;font-weight:750}
+
+/* Timetable */
+.schedule-toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.schedule-toolbar input{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;color:var(--ink);font-size:12px}
+.view-switch{display:flex;gap:5px;background:#f0f5fa;padding:4px;border-radius:11px}
+.view-switch button{padding:8px 12px;border-radius:8px;background:transparent;color:#718198;font-size:11px;font-weight:750}
+.view-switch button.active{background:#fff;color:var(--blue);box-shadow:0 2px 7px #24496d12}
+.schedule-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.schedule-metric{background:#f7fbff;border:1px solid #eaf1f7;border-radius:13px;padding:14px}
+.schedule-metric strong{display:block;font-size:20px;color:var(--navy);margin-bottom:3px}
+.schedule-metric span{font-size:10px;color:var(--muted)}
+.schedule-progress{height:8px;background:#edf2f7;border-radius:20px;overflow:hidden;margin-top:9px}
+.schedule-progress span{height:100%;display:block;background:var(--green);border-radius:20px;transition:width .2s}
+.schedule-list{display:grid;gap:9px}
+.schedule-item{display:grid;grid-template-columns:76px 4px minmax(0,1fr) auto;gap:12px;align-items:center;padding:13px;border:1px solid #edf1f6;border-radius:13px;background:#fff}
+.schedule-time{font-size:11px;font-weight:800;color:#58718a;line-height:1.5}
+.schedule-line{height:42px;border-radius:10px;background:#76b7e5}
+.schedule-item.done .schedule-line{background:var(--green)}
+.schedule-item.done .schedule-title{text-decoration:line-through;color:#8b9aaa}
+.schedule-title{font-size:12px;font-weight:800;color:var(--navy)}
+.schedule-meta{font-size:10px;color:var(--muted);margin-top:4px}
+.schedule-actions{display:flex;gap:5px;align-items:center}
+.schedule-actions button{border-radius:8px;padding:7px 9px;font-size:10px;font-weight:750;background:#edf6fd;color:#287dbb}
+.schedule-actions button.complete{background:#eaf8f2;color:#22966c}
+.week-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.week-day{border:1px solid var(--line);border-radius:12px;background:#fbfdff;padding:10px;min-height:180px}
+.week-day.today{border-color:#70b9e9;background:#f1f9ff}
+.week-day-head{display:flex;justify-content:space-between;gap:4px;align-items:center;margin-bottom:10px;font-size:10px;font-weight:800;color:#63788e}
+.week-day-head strong{font-size:17px;color:var(--navy)}
+.week-event{padding:7px;margin:6px 0;border-radius:8px;background:#eaf5ff;color:#286f9f;font-size:9px;line-height:1.4;overflow-wrap:anywhere}
+.week-event.done{background:#eaf8f2;color:#23815f;text-decoration:line-through}
+.week-event b{display:block;font-size:9px;margin-bottom:2px}
+.schedule-day-link{background:transparent;color:var(--blue);font-size:9px;font-weight:750;padding:4px 0}
+
+/* ===== Giao diện nâng cấp ===== */
+:root{--blue:#2f6bff;--blue2:#eaf0ff;--navy:#0f2440;--ink:#24364f;--muted:#7a8aa3;--line:#e5ebf4;--bg:#f1f4fa;--green:#0fa77c;--orange:#f5a524;--red:#ef5b5b;--shadow:0 1px 2px rgba(15,36,64,.04),0 14px 34px -14px rgba(15,36,64,.14);--ease:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.56,.64,1);--display:"Bricolage Grotesque","Be Vietnam Pro",system-ui,sans-serif;--body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:#cfdcff}
+:focus-visible{outline:2px solid #6f95ff;outline-offset:2px}
+.i{width:1.1em;height:1.1em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+@keyframes rise{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:translateY(26px) scale(.92)}to{opacity:1;transform:none}}
+@keyframes growX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Thanh bên */
+.sidebar{background:linear-gradient(190deg,#122d50 0%,#0b1d36 100%);border:0;padding:26px 16px;box-shadow:8px 0 30px -14px rgba(11,29,54,.5)}
+.brand{color:#fff;font-family:var(--display);font-size:23px;letter-spacing:-.03em;padding:0 10px 32px}
+.brandmark{background:linear-gradient(135deg,#7ea1ff,#2f6bff);border-radius:13px;box-shadow:0 8px 20px -4px rgba(47,107,255,.65)}
+.brandmark .i{width:20px;height:20px;stroke-width:2.2}
+.brand small{font-family:var(--body);letter-spacing:0;font-size:11px;font-weight:500;color:rgba(255,255,255,.5)}
+.nav-label{display:none}
+.nav{position:relative;gap:4px}
+.nav::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--ih,44px);transform:translateY(var(--iy,0px));border-radius:13px;background:linear-gradient(100deg,rgba(255,255,255,.17),rgba(255,255,255,.07));box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);transition:transform .6s var(--ease),height .3s var(--ease)}
+.nav button{position:relative;z-index:1;color:rgba(255,255,255,.62);padding:12px 14px;font-size:13.5px;font-weight:600;transition:color .3s,transform .4s var(--ease)}
+.nav button:hover{background:transparent;color:#fff;transform:translateX(3px)}
+.nav button.active{background:transparent;color:#fff}
+.nav .i{width:19px;height:19px}
+.nav button.active .i{color:#9db8ff}
+.side-bottom{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:16px}
+.side-bottom strong{color:#fff;font-size:12.5px}
+.side-bottom p{color:rgba(255,255,255,.6);font-size:11.5px}
+
+/* Khung chính */
+.main{padding:24px 38px 56px}
+.eyebrow{text-transform:none;letter-spacing:0;font-size:13px;font-weight:500;color:var(--muted)}
+.topbar h1{font-family:var(--display);font-size:30px;font-weight:700;letter-spacing:-.035em;margin-top:4px}
+.month-select,.icon-btn{border-radius:12px;padding:10px 14px;font-weight:500;transition:border-color .25s,transform .3s var(--ease)}
+.month-select:hover,.icon-btn:hover{border-color:#b9c9ea}
+.icon-btn:active{transform:scale(.92)}
+.avatar{background:linear-gradient(135deg,#7ea1ff,#2f6bff);color:#fff;box-shadow:0 6px 14px -4px rgba(47,107,255,.55)}
+.page-heading h2{font-family:var(--display);font-size:27px;font-weight:700;letter-spacing:-.035em}
+.page-heading p{font-size:13px}
+.card{border-radius:22px;padding:22px;border:1px solid rgba(15,36,64,.06)}
+.card-head h3{font-family:var(--display);font-size:16px;font-weight:650;letter-spacing:-.02em}
+.card-head p{font-size:12px}
+.small-note{font-size:11.5px}
+.empty{font-size:13px;padding:36px}
+.setting-row{font-size:13px}
+
+/* Thanh đếm ngược kỳ thi cố định phía trên (Countdown Bar) */
+.exam-bar{
+  position:sticky;
+  top:12px;
+  z-index:15;
+  margin-bottom:22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:12px 18px;
+  border-radius:18px;
+  background:var(--bar-bg,linear-gradient(135deg,#eff4ff,#ffffff));
+  border:1.5px solid var(--bar-border,#bfd4ff);
+  color:var(--bar-ink,#0f2440);
+  box-shadow:0 10px 28px -10px var(--bar-shadow,rgba(47,107,255,.25)),0 2px 6px rgba(15,36,64,.04);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  cursor:pointer;
+  transition:transform .28s var(--ease),box-shadow .28s var(--ease),border-color .28s,background .28s;
+  user-select:none;
+}
+.exam-bar:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 34px -12px var(--bar-shadow,rgba(47,107,255,.35)),0 4px 10px rgba(15,36,64,.06);
+}
+.exam-bar:active{transform:scale(.992)}
+.exam-bar-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+  flex:1;
+}
+.exam-bar-ico{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:var(--bar-accent,#2f6bff);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  flex:none;
+  box-shadow:0 6px 14px -4px var(--bar-shadow,rgba(47,107,255,.45));
+}
+.exam-bar-ico .i{width:19px;height:19px;stroke-width:2.1}
+.exam-bar-info{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  min-width:0;
+}
+.exam-bar-title{
+  font-family:var(--display);
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:-.02em;
+  color:var(--navy);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:340px;
+}
+.exam-bar-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:4px 11px;
+  border-radius:999px;
+  background:var(--bar-accent,#2f6bff);
+  color:#fff;
+  font-family:var(--display);
+  font-size:12.5px;
+  font-weight:700;
+  letter-spacing:-.01em;
+  white-space:nowrap;
+}
+.exam-bar-date{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  font-size:12.5px;
+  font-weight:600;
+  color:var(--bar-sub,#3b5272);
+  white-space:nowrap;
+}
+.exam-bar-date .i{width:14px;height:14px;opacity:.85}
+.exam-bar-right{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:none;
+}
+.exam-bar-cta{
+  font-size:11.5px;
+  font-weight:700;
+  color:var(--bar-accent,#2f6bff);
+  padding:6px 10px;
+  border-radius:10px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(15,36,64,.06);
+  white-space:nowrap;
+  transition:background .2s;
+}
+.exam-bar:hover .exam-bar-cta{background:#fff}
+.exam-bar-nav{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  background:rgba(255,255,255,.8);
+  border:1px solid rgba(15,36,64,.08);
+  border-radius:11px;
+  padding:3px;
+}
+.exam-bar-nav button{
+  width:26px;
+  height:26px;
+  border-radius:8px;
+  background:transparent;
+  color:var(--navy);
+  font-weight:800;
+  font-size:14px;
+  display:grid;
+  place-items:center;
+  transition:background .2s,color .2s;
+}
+.exam-bar-nav button:hover{
+  background:var(--bar-accent,#2f6bff);
+  color:#fff;
+}
+.exam-bar-nav span{
+  font-size:11px;
+  font-weight:700;
+  color:var(--muted);
+  padding:0 5px;
+  font-variant-numeric:tabular-nums;
+}
+
+/* Chuyển trang: một nhịp vào lần lượt */
+.page.active{animation:fade .4s ease backwards}
+.page.active>.page-heading,.page.active>.card,.page.active>.grid:not(#goalsList)>*{animation:rise .8s var(--ease) backwards}
+.page.active>.grid>*:nth-child(2){animation-delay:.07s}
+.page.active>.grid>*:nth-child(3){animation-delay:.14s}
+.page.active>.grid>*:nth-child(4){animation-delay:.21s}
+.page.active>.card{animation-delay:.12s}
+#goalsList>.card{animation:rise .7s var(--ease) backwards}
+#goalsList>.card:nth-child(2){animation-delay:.07s}#goalsList>.card:nth-child(3){animation-delay:.14s}#goalsList>.card:nth-child(4){animation-delay:.21s}
+
+/* Số dư (điểm nhấn) */
+.stats-dash{grid-template-columns:1.55fr 1fr 1fr}
+.stat-top{font-size:13px;font-weight:500}
+.stat-icon{width:38px;height:38px;border-radius:13px;background:var(--blue2);color:var(--blue)}
+.stat-icon .i{width:19px;height:19px}
+.stat-icon.in{background:#dff7ee;color:#0b9a6f}
+.stat-icon.out{background:#ffe7e7;color:#e04848}
+.stat-icon.am{background:#fff1d6;color:#c77d05}
+.stat-value{font-family:var(--display);font-size:28px;font-weight:700;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.stat-foot{font-size:12px}
+.card.hero-card{background:linear-gradient(140deg,#0f2440 0%,#16407f 55%,#2f6bff 125%);color:#fff;border:0;padding:24px;display:flex;flex-direction:column;position:relative;overflow:hidden;box-shadow:0 24px 40px -20px rgba(15,36,64,.55)}
+.hero-card>*{position:relative}
+.hero-card .stat-top{color:rgba(255,255,255,.72)}
+.hero-card .stat-icon{background:rgba(255,255,255,.15);color:#fff}
+.hero-card .stat-value{color:#fff}
+.hero-value{font-size:clamp(32px,3.6vw,46px);margin:16px 0 6px}
+.hero-card .stat-foot{color:rgba(255,255,255,.6)}
+.hero-saved{margin-top:auto;padding-top:22px;display:flex;align-items:center;gap:12px}
+.hero-saved small{color:rgba(255,255,255,.62);font-size:11.5px}
+.hero-saved b.stat-value{display:block;font-size:17px;margin:0;letter-spacing:-.02em}
+.hero-card .hero-arcs{position:absolute;right:-70px;top:-70px;width:280px;height:280px;animation:spin 60s linear infinite}
+
+/* Mục tiêu và vòng tiến độ */
+.goal-card{background:linear-gradient(135deg,#fff 0%,#f4f8ff 100%)}
+.ring strong{font-family:var(--display);letter-spacing:-.03em}
+.ring-fg{transition:stroke-dashoffset 1.6s var(--ease) .15s}
+.goal-info h2,.goal-item h3{font-family:var(--display);letter-spacing:-.025em}
+.goal-numbers b{font-family:var(--display)}
+
+/* Nút và ô nhập */
+.primary{background:linear-gradient(180deg,#4a80ff,#2f6bff);padding:11px 17px;border-radius:12px;font-size:12.5px;box-shadow:0 8px 18px -6px rgba(47,107,255,.6),inset 0 1px 0 rgba(255,255,255,.25);transition:transform .3s var(--ease),box-shadow .3s}
+.primary:hover{transform:translateY(-2px);box-shadow:0 14px 24px -8px rgba(47,107,255,.65),inset 0 1px 0 rgba(255,255,255,.25)}
+.secondary{background:var(--blue2);color:#2457d6;padding:11px 16px;border-radius:12px;font-size:12.5px;transition:background .25s,transform .3s var(--ease)}
+.secondary:hover{background:#dbe5ff}
+.primary:active,.secondary:active{transform:scale(.95)}
+.link-btn{font-size:12px;transition:opacity .2s,transform .3s var(--ease)}
+.link-btn:hover{opacity:.75;transform:translateX(2px)}
+.danger-btn{border-radius:11px;transition:background .25s,transform .3s var(--ease)}
+.danger-btn:hover{background:#ffe0e0}
+.danger-btn:active{transform:scale(.95)}
+.filters input,.filters select,.field input,.field select,.schedule-toolbar input{border-radius:12px;padding:11px 13px;transition:border-color .25s,box-shadow .25s}
+.filters input:focus,.field input:focus,.field select:focus{border-color:#7ea1ff;box-shadow:0 0 0 4px rgba(47,107,255,.12)}
+.field label{font-size:12px;font-weight:600}
+
+/* Thanh tiến độ, nhãn, bảng */
+.chart-wrap{height:210px}
+.legend{display:flex;gap:14px;align-items:center;font-size:11.5px;color:var(--muted)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:5px}
+.bar{height:9px;background:#e9eef7}
+.bar span{background:linear-gradient(90deg,#6f9bff,#2f6bff);transform-origin:left;animation:growX 1.2s var(--ease) .2s backwards}
+.bar span.warn{background:linear-gradient(90deg,#ffc860,#f5a524)}
+.bar span.danger{background:linear-gradient(90deg,#ff8f8f,#ef5b5b)}
+.budget-row .budget-meta{font-size:12px}
+.pill{background:#eaf0ff;color:#2457d6;padding:5px 10px}
+.pill.in{background:#dff7ee;color:#0b8a63}
+.pill.out{background:#ffe9e9;color:#d94848}
+.transactions th,.full-table th{font-size:12px;font-weight:600;color:var(--muted)}
+.transactions td,.full-table td{font-size:12.5px;padding-block:14px}
+.transactions tbody tr,.full-table tbody tr{transition:background .25s}
+.transactions tbody tr:hover,.full-table tbody tr:hover{background:#f5f8ff}
+.tx-icon{width:36px;height:36px;border-radius:12px;background:#eef3ff;font-size:16px}
+.amount{font-family:var(--display);font-size:13.5px;font-variant-numeric:tabular-nums}
+.amount.expense{color:#e04848}
+.score-box{background:linear-gradient(135deg,#ecf1ff,#f6f9ff);border-radius:18px}
+.score-number{font-family:var(--display);font-size:44px;color:var(--blue);letter-spacing:-.04em}
+.ach-icon{background:#fff3da;border-radius:12px}
+
+/* Lịch chi tiêu */
+.calendar{gap:8px}
+.day-name{font-size:11px;font-weight:600}
+.day{min-height:84px;border-radius:14px;background:#f8faff;border-color:#edf1f8;transition:transform .35s var(--ease),box-shadow .35s,border-color .35s}
+.day:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#cfdcf9}
+.day.today{background:#eef3ff;border-color:#9db8ff}
+.day strong{display:inline-grid;place-items:center;min-width:24px;height:24px;border-radius:50%;font-weight:600}
+.day.today strong{background:var(--blue);color:#fff}
+.day small{font-weight:600}
+
+/* Thời khóa biểu */
+.view-switch{background:#e9eff9;border-radius:13px}
+.view-switch button{padding:8px 14px;font-size:12px;transition:background .35s var(--ease),color .3s,box-shadow .35s}
+.view-switch button.active{box-shadow:0 4px 10px -3px rgba(15,36,64,.2)}
+.schedule-metric{background:#f6f9ff;border-radius:16px;padding:16px}
+.schedule-metric strong{font-family:var(--display);font-size:26px;letter-spacing:-.03em}
+.schedule-progress span{background:linear-gradient(90deg,#2fd9a8,#0fa77c);transition:width .9s var(--ease)}
+.schedule-item{border-radius:16px;padding:14px 16px;transition:transform .4s var(--ease),box-shadow .4s,border-color .4s}
+.schedule-item:hover{transform:translateX(4px);box-shadow:var(--shadow);border-color:#d3dffa}
+.schedule-item.done{background:#f6fcf9}
+.schedule-line{background:linear-gradient(180deg,#8aaaff,#2f6bff)}
+.schedule-item.done .schedule-line{background:linear-gradient(180deg,#2fd9a8,#0fa77c)}
+.schedule-time{font-family:var(--display);font-size:12.5px;font-weight:600}
+.schedule-title{font-size:13.5px;font-weight:650}
+.schedule-meta{font-size:11.5px}
+.schedule-actions button{padding:8px 11px;font-size:11px;border-radius:10px;transition:background .25s,transform .3s var(--ease)}
+.schedule-actions button:active{transform:scale(.93)}
+.week-day{border-radius:16px;background:#f8faff;transition:transform .4s var(--ease),box-shadow .4s}
+.week-day:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.week-day.today{background:#eef3ff;border-color:#9db8ff}
+.week-day-head strong{font-family:var(--display);font-size:20px}
+.week-event{border-left:3px solid #2f6bff;border-radius:6px 10px 10px 6px;background:#e8efff;color:#2447a8;font-size:10.5px}
+.week-event.done{border-left-color:#0fa77c;background:#e3f7ef;color:#0b7a5a}
+
+/* Hộp thoại và thông báo */
+.modal-backdrop{background:rgba(11,29,54,.45);backdrop-filter:blur(6px)}
+.modal-backdrop.show{animation:fade .3s ease backwards}
+.modal-backdrop.show .modal{animation:pop .6s var(--spring) backwards}
+.modal{border-radius:26px;padding:26px;box-shadow:0 30px 80px -20px rgba(11,29,54,.55)}
+.modal-head h3{font-family:var(--display);font-size:21px;letter-spacing:-.025em}
+.close{border-radius:10px;transition:background .2s,transform .4s var(--ease)}
+.close:hover{background:#e6ebf3;transform:rotate(90deg)}
+.toast{background:#0f2440;border-radius:14px;padding:13px 18px;font-weight:500;transform:translateY(-14px) scale(.96);transition:opacity .3s,transform .55s var(--spring)}
+.toast.show{transform:none}
+.toast::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#3ddc97;margin-right:10px}
+
+@media(max-width:900px){.week-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.exam-bar-cta{display:none}.exam-bar-title{max-width:220px}}
+@media(max-width:700px){.schedule-summary{gap:7px}.schedule-metric{padding:10px}.schedule-metric strong{font-size:17px}.schedule-item{grid-template-columns:62px 4px minmax(0,1fr);gap:8px;padding:10px}.schedule-actions{grid-column:3;justify-content:flex-end}.week-grid{grid-template-columns:1fr 1fr}.week-day{min-height:130px;padding:8px}}
+
+@media(max-width:1050px){.stats{grid-template-columns:repeat(2,1fr)}.overview-grid,.bottom-grid{grid-template-columns:1fr}.main{padding:20px 24px 24px}.calendar-layout{grid-template-columns:1fr}.sidebar{width:215px}.main{margin-left:215px;width:calc(100% - 215px)}}
+@media(max-width:700px){.sidebar{width:100%;height:64px;inset:auto 0 0 0;padding:6px 8px;border-right:0;border-top:1px solid var(--line);display:block}.brand,.nav-label,.side-bottom{display:none}.nav{display:flex;justify-content:space-around;height:100%}.nav button{padding:7px 5px;flex:1;justify-content:center;flex-direction:column;gap:2px;font-size:9px}.nav .ico{font-size:16px}.main{margin:0;width:100%;padding:14px 14px 90px}.topbar{margin-bottom:20px}.topbar h1{font-size:21px}.top-actions .month-select{max-width:125px;padding:9px 6px;font-size:10px}.avatar{display:none}.stats{gap:10px}.stat-card{padding:14px}.stat-value{font-size:19px}.stat-top{font-size:10px}.stat-icon{width:29px;height:29px}.card{padding:15px}.goal-main{align-items:flex-start;gap:12px}.ring{width:96px;height:96px}.ring strong{font-size:21px}.goal-numbers{gap:13px}.goal-numbers b{font-size:13px}.goal-grid,.settings-grid{grid-template-columns:1fr}.page-heading{align-items:flex-start;gap:10px}.page-heading h2{font-size:18px}.page-heading .primary{white-space:nowrap}.calendar{gap:3px}.day{min-height:57px;padding:5px;font-size:10px}.day small{font-size:8px;margin-top:6px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.toast{right:12px;top:74px;left:12px;text-align:center}}
+
+@media(max-width:1050px){.stats-dash{grid-template-columns:1fr 1fr}.stats-dash .hero-card{grid-column:1/-1}}
+@media(max-width:700px){
+  .nav::before{display:none}
+  .nav button.active{background:rgba(255,255,255,.13)}
+  .nav button:hover{transform:none}
+  .sidebar{inset:auto 10px 10px 10px;width:auto;height:66px;border-radius:22px;border:1px solid rgba(255,255,255,.1);background:rgba(11,29,54,.95);backdrop-filter:blur(14px)}
+  .main{padding:14px 14px 104px}
+  .topbar h1{font-size:23px}
+  .card{padding:16px;border-radius:20px}
+  .card.hero-card{padding:20px}
+  .hero-value{font-size:32px}
+  .stat-value{font-size:21px}
+  .score-number{font-size:36px}
+  .exam-bar{top:8px;margin-bottom:14px;padding:10px 12px;border-radius:15px;gap:8px}
+  .exam-bar-left{gap:9px}
+  .exam-bar-ico{width:32px;height:32px;border-radius:10px}
+  .exam-bar-ico .i{width:16px;height:16px}
+  .exam-bar-info{gap:4px 8px}
+  .exam-bar-title{font-size:13px;max-width:155px}
+  .exam-bar-badge{font-size:11px;padding:3px 8px}
+  .exam-bar-date{font-size:11px}
+  .exam-bar-nav button{width:23px;height:23px;font-size:13px}
+  .exam-bar-nav span{font-size:10px;padding:0 3px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}html{scroll-behavior:auto}}
+
+/* Đếm ngược ngày thi */
+.exam-card{position:relative;overflow:hidden;border:1px solid var(--exam-border,#dce8ff);background:linear-gradient(135deg,#fff 0%,var(--exam-bg,#f4f8ff) 100%);transition:transform .3s,box-shadow .3s}
+.exam-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.exam-card::before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:var(--exam-color,#2f6bff)}
+.exam-top{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.exam-tag{font-size:10px;font-weight:800;padding:6px 10px;border-radius:30px;background:var(--exam-bg);color:var(--exam-color)}
+.exam-count{font-family:var(--display);font-size:clamp(34px,4vw,48px);font-weight:800;letter-spacing:-.05em;color:var(--exam-color);margin:18px 0 2px;font-variant-numeric:tabular-nums}
+.exam-count small{font:600 13px var(--body);letter-spacing:0;color:var(--muted)}
+.exam-name{font:700 18px var(--display);color:var(--navy);margin:12px 0 5px}
+.exam-date{font-size:12px;color:var(--muted)}
+.exam-actions{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.exam-actions button{padding:8px 11px;border-radius:9px;font-size:11px;font-weight:750;background:#edf2ff;color:#315fd0}
+.exam-actions .delete-exam{background:#fff0f0;color:#cf666c}
+@media(max-width:700px){.exam-count{font-size:38px}}
+
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gRing" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8aaaff"/><stop offset="1" stop-color="#2f6bff"/></linearGradient></defs>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></symbol>
+<symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 20V11M12 20V4M19 20v-6"/></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></symbol>
+<symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10h18M16 15h2"/></symbol>
+<symbol id="i-in" viewBox="0 0 24 24"><path d="M17 7 7 17M7 8v9h9"/></symbol>
+<symbol id="i-out" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+<symbol id="i-trend" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8M15 7h6v6"/></symbol>
+<symbol id="i-pct" viewBox="0 0 24 24"><path d="M19 5 5 19"/><circle cx="7" cy="7" r="2"/><circle cx="17" cy="17" r="2"/></symbol>
+<symbol id="i-receipt" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></symbol></svg>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brandmark"><svg class="i"><use href="#i-trend"/></svg></div><div>SaveMate<small>Chi tiêu thông minh</small></div></div>
+  <div class="nav-label">MENU CHÍNH</div>
+  <nav class="nav">
+    <button class="active" data-page="dashboard"><svg class="i"><use href="#i-grid"/></svg>Tổng quan</button>
+    <button data-page="goals"><svg class="i"><use href="#i-target"/></svg>Mục tiêu</button>
+    <button data-page="transactions"><svg class="i"><use href="#i-swap"/></svg>Giao dịch</button>
+    <button data-page="calendar"><svg class="i"><use href="#i-cal"/></svg>Lịch chi tiêu</button>
+    <button data-page="schedule"><svg class="i"><use href="#i-clock"/></svg>Thời khóa biểu</button>
+    <button data-page="exams"><svg class="i"><use href="#i-cal"/></svg>Đếm ngược thi</button>
+    <button data-page="statistics"><svg class="i"><use href="#i-chart"/></svg>Thống kê</button>
+    <button data-page="settings"><svg class="i"><use href="#i-sliders"/></svg>Cài đặt</button>
+  </nav>
+  <div class="side-bottom"><strong>💡 Mẹo nhỏ hôm nay</strong><p>Ghi lại mọi khoản chi, dù nhỏ. Những thói quen nhỏ tạo nên thay đổi lớn.</p></div>
+</aside>
+<main class="main">
+  <div id="examCountdownBar" class="exam-bar" role="button" tabindex="0" aria-label="Xem quản lý kỳ thi"></div>
+  <header class="topbar"><div><div class="eyebrow" id="greeting">Chào mừng trở lại</div><h1 id="pageTitle">Tổng quan tài chính</h1></div><div class="top-actions"><select class="month-select" id="monthFilter" aria-label="Chọn tháng"></select><div class="avatar">SM</div></div></header>
+
+  <section class="page active" id="dashboard">
+    <div class="grid stats stats-dash">
+      <div class="card hero-card">
+        <svg class="hero-arcs" viewBox="0 0 200 200" fill="none" aria-hidden="true"><circle cx="100" cy="100" r="92" stroke="#fff" stroke-opacity=".18" stroke-width="1.2" stroke-dasharray="3 7"/><circle cx="100" cy="100" r="68" stroke="#fff" stroke-opacity=".14" stroke-width="1.2"/><circle cx="100" cy="100" r="44" stroke="#fff" stroke-opacity=".22" stroke-width="1.2" stroke-dasharray="40 14"/></svg>
+        <div class="stat-top">Tổng số dư <span class="stat-icon"><svg class="i"><use href="#i-card"/></svg></span></div>
+        <div class="stat-value hero-value" id="balance">0đ</div>
+        <div class="stat-foot">Thu nhập trừ chi tiêu</div>
+        <div class="hero-saved"><span class="stat-icon"><svg class="i"><use href="#i-trend"/></svg></span><div><b class="stat-value" id="saved">0đ</b><small>Đã góp vào mục tiêu trong tháng</small></div></div>
+      </div>
+      <div class="card stat-card"><div class="stat-top">Thu nhập tháng <span class="stat-icon in"><svg class="i"><use href="#i-in"/></svg></span></div><div class="stat-value" id="income">0đ</div><div class="stat-foot"><span class="positive">●</span> Tổng tiền đã nhận</div></div>
+      <div class="card stat-card"><div class="stat-top">Chi tiêu tháng <span class="stat-icon out"><svg class="i"><use href="#i-out"/></svg></span></div><div class="stat-value" id="expense">0đ</div><div class="stat-foot">Tổng tiền đã chi</div></div>
+    </div>
+    <div class="grid overview-grid">
+      <div class="card goal-card"><div class="card-head"><div><h3>🎯 Mục tiêu nổi bật</h3><p>Theo dõi hành trình tiết kiệm của bạn</p></div><button class="link-btn" data-goto="goals">Tất cả mục tiêu →</button></div><div id="featuredGoal"></div></div>
+      <div class="card"><div class="card-head"><div><h3>Dòng tiền tháng này</h3><p>Thu nhập và chi tiêu theo ngày</p></div><span class="legend"><span><i style="--c:#0fa77c"></i>Thu</span><span><i style="--c:#2f6bff"></i>Chi</span></span></div><div class="chart-wrap"><canvas id="cashChart"></canvas></div><div class="small-note">Biểu đồ dựa trên các giao dịch đã nhập.</div></div>
+    </div>
+    <div class="grid bottom-grid">
+      <div class="card"><div class="card-head"><div><h3>Ngân sách theo danh mục</h3><p>Theo dõi mức chi tiêu đã sử dụng</p></div><button class="link-btn" data-goto="settings">Thiết lập →</button></div><div class="budget-list" id="budgetOverview"></div></div>
+      <div class="card"><div class="card-head"><div><h3>Điểm tiết kiệm hôm nay</h3><p>Đánh giá thói quen tài chính</p></div><span>✨</span></div><div class="score-box"><div class="score-number" id="score">--</div><div><h4 id="scoreTitle">Bắt đầu hành trình nhé!</h4><p id="scoreDesc">Ghi lại giao dịch để xem điểm tiết kiệm của bạn.</p></div></div><div class="achievement-list"><div class="achievement"><div class="ach-icon">🌱</div><div><strong>Khởi đầu tốt</strong><span>Ghi lại giao dịch đầu tiên</span></div></div><div class="achievement"><div class="ach-icon">🏅</div><div><strong>Người tiết kiệm</strong><span>Hoàn thành một mục tiêu</span></div></div></div></div>
+    </div>
+    <div class="card" style="margin-top:18px"><div class="card-head"><div><h3>Giao dịch gần đây</h3><p>Các khoản thu chi mới nhất</p></div><button class="link-btn" data-goto="transactions">Xem tất cả →</button></div><div class="table-wrap"><table class="transactions"><thead><tr><th>Giao dịch</th><th>Ngày</th><th>Loại</th><th style="text-align:right">Số tiền</th></tr></thead><tbody id="recentTransactions"></tbody></table></div></div>
+  </section>
+
+  <section class="page" id="goals">
+    <div class="page-heading"><div><h2>Mục tiêu tiết kiệm</h2><p>Chia mục tiêu lớn thành những bước nhỏ mỗi ngày.</p></div><button class="primary" id="addGoalBtn">＋ Tạo mục tiêu</button></div>
+    <div class="grid goal-grid" id="goalsList"></div>
+  </section>
+
+  <section class="page" id="transactions">
+    <div class="page-heading"><div><h2>Quản lý giao dịch</h2><p>Ghi chép và kiểm soát từng khoản thu chi.</p></div><button class="primary" id="addTransactionBtn">＋ Thêm giao dịch</button></div>
+    <div class="card"><div class="filters"><input id="searchTx" placeholder="Tìm giao dịch..."><select id="typeFilter"><option value="all">Tất cả giao dịch</option><option value="expense">Chi tiêu</option><option value="income">Thu nhập</option><option value="saving">Tiết kiệm</option></select><select id="categoryFilter"><option value="all">Mọi danh mục</option></select></div><div class="table-wrap"><table class="full-table"><thead><tr><th>Giao dịch</th><th>Danh mục</th><th>Ngày</th><th>Loại</th><th style="text-align:right">Số tiền</th><th></th></tr></thead><tbody id="allTransactions"></tbody></table></div></div>
+  </section>
+
+  <section class="page" id="calendar">
+    <div class="page-heading"><div><h2>Lịch chi tiêu</h2><p>Nhìn lại dòng tiền theo từng ngày trong tháng.</p></div><button class="primary" id="calendarAdd">＋ Ghi giao dịch</button></div>
+    <div class="grid calendar-layout"><div class="card"><div class="card-head"><h3 id="calendarMonth">Lịch tháng</h3><div><button class="icon-btn" id="prevMonth">‹</button> <button class="icon-btn" id="nextMonth">›</button></div></div><div class="calendar" id="calendarGrid"></div></div><div class="card"><div class="card-head"><div><h3>Thông tin tháng</h3><p>Tổng hợp nhanh</p></div></div><div id="calendarSummary"></div><div class="small-note" style="margin-top:16px">Chọn tháng ở góc trên để xem dữ liệu của tháng khác.</div></div></div>
+  </section>
+
+
+  <section class="page" id="schedule">
+    <div class="page-heading">
+      <div><h2>Thời khóa biểu</h2><p>Lên lịch sinh hoạt theo tuần và theo dõi từng ngày. Lịch lặp lại hằng tuần.</p></div>
+      <button class="primary" id="addScheduleBtn">＋ Thêm hoạt động</button>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-head" style="flex-wrap:wrap;gap:12px">
+        <div><h3>📅 Lịch trình của bạn</h3><p id="scheduleRangeLabel">Lịch tuần</p></div>
+        <div class="schedule-toolbar">
+          <button class="icon-btn" id="schedulePrev">‹</button>
+          <input type="date" id="scheduleDate" aria-label="Chọn ngày">
+          <button class="icon-btn" id="scheduleNext">›</button>
+          <div class="view-switch">
+            <button id="dailyViewBtn" class="active" type="button">Theo ngày</button>
+            <button id="weeklyViewBtn" type="button">Theo tuần</button>
+          </div>
+        </div>
+      </div>
+      <div class="schedule-summary">
+        <div class="schedule-metric"><strong id="scheduleTotal">0</strong><span>Hoạt động trong ngày</span></div>
+        <div class="schedule-metric"><strong id="scheduleDone">0</strong><span>Đã hoàn thành</span></div>
+        <div class="schedule-metric"><strong id="schedulePercent">0%</strong><span>Tiến độ hôm nay</span><div class="schedule-progress"><span id="scheduleProgressBar" style="width:0%"></span></div></div>
+      </div>
+      <div id="dailyScheduleView">
+        <div class="schedule-list" id="dailyScheduleList"></div>
+      </div>
+      <div id="weeklyScheduleView" style="display:none">
+        <div class="week-grid" id="weeklyScheduleGrid"></div>
+      </div>
+    </div>
+    <p class="small-note">Mẹo: Hoạt động được lưu thành lịch lặp lại theo thứ trong tuần. Trạng thái hoàn thành được ghi riêng cho từng ngày trên thiết bị này.</p>
+  </section>
+
+  <section class="page" id="exams">
+    <div class="page-heading"><div><h2>⏳ Đếm ngược ngày thi</h2><p>Tự tạo các kỳ thi và theo dõi thời gian còn lại.</p></div><button class="primary" id="addExamBtn">＋ Thêm ngày thi</button></div>
+    <div class="grid goal-grid" id="examList"></div>
+    <div class="card" id="examEmpty" style="display:none"><div class="empty">Chưa có kỳ thi nào. Bấm “Thêm ngày thi” để tạo lịch ôn tập nhé!</div></div>
+  </section>
+
+  <section class="page" id="statistics">
+    <div class="page-heading"><div><h2>Thống kê tài chính</h2><p>Hiểu thói quen chi tiêu để đưa ra quyết định tốt hơn.</p></div></div>
+    <div class="grid stats"><div class="card stat-card"><div class="stat-top">Tổng thu <span class="stat-icon in"><svg class="i"><use href="#i-in"/></svg></span></div><div class="stat-value" id="statIncome">0đ</div></div><div class="card stat-card"><div class="stat-top">Tổng chi <span class="stat-icon out"><svg class="i"><use href="#i-out"/></svg></span></div><div class="stat-value" id="statExpense">0đ</div></div><div class="card stat-card"><div class="stat-top">Tỷ lệ tiết kiệm <span class="stat-icon am"><svg class="i"><use href="#i-pct"/></svg></span></div><div class="stat-value" id="savingRate">0%</div></div><div class="card stat-card"><div class="stat-top">Số giao dịch <span class="stat-icon"><svg class="i"><use href="#i-receipt"/></svg></span></div><div class="stat-value" id="txCount">0</div></div></div>
+    <div class="grid overview-grid"><div class="card"><div class="card-head"><div><h3>Chi tiêu theo danh mục</h3><p>Tỷ trọng các khoản chi trong tháng</p></div></div><div class="chart-wrap"><canvas id="categoryChart"></canvas></div><div id="categoryLegend" class="budget-list"></div></div><div class="card"><div class="card-head"><div><h3>Gợi ý tài chính</h3><p>Dựa trên dữ liệu tháng đang chọn</p></div>💡</div><div id="insights" class="budget-list"></div></div></div>
+  </section>
+
+  <section class="page" id="settings">
+    <div class="page-heading"><div><h2>Cài đặt & ngân sách</h2><p>Tùy chỉnh danh mục và hạn mức chi tiêu của bạn.</p></div></div>
+    <div class="grid settings-grid"><div class="card"><div class="card-head"><div><h3>Ngân sách tháng</h3><p>Đặt giới hạn cho từng danh mục chi tiêu</p></div></div><div id="budgetSettings"></div><button class="secondary" id="editBudgetBtn" style="margin-top:14px">✎ Chỉnh sửa ngân sách</button></div><div class="card"><div class="card-head"><div><h3>Dữ liệu & tài khoản</h3><p>Quản lý dữ liệu SaveMate trên thiết bị</p></div></div><div class="setting-row"><span>Lưu trữ</span><strong>Trên trình duyệt này</strong></div><div class="setting-row"><span>Đơn vị tiền tệ</span><strong>VND (₫)</strong></div><div class="setting-row"><span>Số mục tiêu</span><strong id="goalCount">0</strong></div><div class="setting-row"><span>Số giao dịch</span><strong id="transactionCount">0</strong></div><p class="small-note">Bản HTML này lưu dữ liệu bằng Local Storage của trình duyệt. Dữ liệu không tự đồng bộ giữa các thiết bị.</p><button class="danger-btn" id="resetData">Xóa toàn bộ dữ liệu</button></div></div>
+  </section>
+</main>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop"><div class="modal"><div class="modal-head"><h3 id="modalTitle">Thêm mới</h3><button class="close" id="closeModal">×</button></div><form id="modalForm"><div class="form-grid" id="modalFields"></div><div class="modal-actions"><button type="button" class="secondary" id="cancelModal">Hủy</button><button type="submit" class="primary">Lưu lại</button></div></form></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const money=n=>new Intl.NumberFormat('vi-VN').format(Math.round(n||0))+'đ';
+const today=()=>new Date().toISOString().slice(0,10);
+const monthKey=d=>d.slice(0,7);
+const categories=['Ăn uống','Đi lại','Học tập','Mua sắm','Giải trí','Nhà cửa','Sức khỏe','Khác'];
+const icons={'Ăn uống':'🍜','Đi lại':'🚌','Học tập':'📚','Mua sắm':'🛍️','Giải trí':'🎮','Nhà cửa':'🏠','Sức khỏe':'💊','Khác':'📦','Lương':'💼','Thưởng':'🎁','Thu nhập khác':'💰','Tiết kiệm':'🎯'};
+const defaultData={
+ transactions:[
+  {id:1,name:'Ăn trưa',category:'Ăn uống',type:'expense',amount:45000,date:today(),note:''},
+  {id:2,name:'Tiền làm thêm',category:'Lương',type:'income',amount:1200000,date:today(),note:''},
+  {id:3,name:'Mua tài liệu học',category:'Học tập',type:'expense',amount:85000,date:today(),note:''},
+  {id:4,name:'Xe buýt',category:'Đi lại',type:'expense',amount:7000,date:today(),note:''}
+ ],
+ goals:[{id:1,name:'Mua laptop mới',target:15000000,current:3000000,deadline:new Date(new Date().setMonth(new Date().getMonth()+5)).toISOString().slice(0,10),icon:'💻'},{id:2,name:'Quỹ dự phòng',target:5000000,current:1250000,deadline:new Date(new Date().setMonth(new Date().getMonth()+8)).toISOString().slice(0,10),icon:'🛟'}],
+ budgets:{'Ăn uống':1200000,'Đi lại':300000,'Học tập':500000,'Mua sắm':500000,'Giải trí':300000,'Nhà cửa':500000,'Sức khỏe':300000,'Khác':300000}
+};
+let data;try{data=JSON.parse(localStorage.getItem('savemate_data'))||structuredClone(defaultData)}catch(e){data=structuredClone(defaultData)}
+data.schedule=data.schedule||[];data.scheduleDone=data.scheduleDone||{};data.exams=data.exams||[];
+let selectedScheduleDate=today(),scheduleView='daily';
+let selectedMonth=monthKey(today()), calendarDate=new Date(), modalMode='', toastTimer, examBarIndex=0;
+function save(){localStorage.setItem('savemate_data',JSON.stringify(data));render();if($('#schedule')?.classList.contains('active'))renderSchedule()}
+function notify(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2400)}
+function inMonth(t){return monthKey(t.date)===selectedMonth}
+function txs(){return data.transactions.filter(inMonth)}
+function sums(list){return list.reduce((a,t)=>{if(t.type==='income')a.income+=+t.amount;else if(t.type==='expense')a.expense+=+t.amount;else a.saving+=+t.amount;return a},{income:0,expense:0,saving:0})}
+function setPage(page){$$('.page').forEach(p=>p.classList.toggle('active',p.id===page));$$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));const names={dashboard:'Tổng quan tài chính',goals:'Mục tiêu tiết kiệm',transactions:'Quản lý giao dịch',calendar:'Lịch chi tiêu',schedule:'Thời khóa biểu',exams:'Đếm ngược ngày thi',statistics:'Thống kê tài chính',settings:'Cài đặt'};$('#pageTitle').textContent=names[page]||'SaveMate';$$('#'+page+' .stat-value,#'+page+' .score-number').forEach(e=>e._v=0);moveNav();if(page==='dashboard')renderDashboard();if(page==='goals')renderGoals();if(page==='calendar')renderCalendar();if(page==='schedule')renderSchedule();if(page==='exams')renderExams();if(page==='statistics')renderStats();window.scrollTo({top:0,behavior:'smooth'})}
+function fillMonth(){const sel=$('#monthFilter');sel.innerHTML='';for(let i=0;i<15;i++){let d=new Date();d.setDate(1);d.setMonth(d.getMonth()-i);let v=monthKey(d.toISOString().slice(0,10));let o=document.createElement('option');o.value=v;o.textContent='Tháng '+(d.getMonth()+1)+'/'+d.getFullYear();sel.append(o)}sel.value=selectedMonth}
+function ring(pct,size=124){let p=Math.max(0,Math.min(100,pct)),r=47,c=2*Math.PI*r;return `<div class="ring" style="width:${size}px;height:${size}px"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="${r}" fill="none" stroke="#e8edf7" stroke-width="8"/><circle class="ring-fg" cx="50" cy="50" r="${r}" fill="none" stroke="url(#gRing)" stroke-width="8" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c}" data-off="${c*(1-p/100)}"/></svg><div class="ring-text"><strong>${Math.round(p)}%</strong><span>hoàn thành</span></div></div>`}
+function renderDashboard(){const list=txs(),s=sums(list),balance=data.transactions.reduce((a,t)=>a+(t.type==='income'?+t.amount:t.type==='expense'?-t.amount:0),0);setNum('#balance',balance);setNum('#income',s.income);setNum('#expense',s.expense);setNum('#saved',s.saving);const goal=data.goals[0];if(goal){let pct=goal.target?goal.current/goal.target*100:0;$('#featuredGoal').innerHTML=`<div class="goal-main">${ring(pct)}<div class="goal-info"><h2>${esc(goal.icon||'🎯')} ${esc(goal.name)}</h2><p>Mục tiêu đến ${fmtDate(goal.deadline)}</p><div class="goal-numbers"><div><b>${money(goal.current)}</b><span>Đã tiết kiệm</span></div><div><b>${money(Math.max(0,goal.target-goal.current))}</b><span>Còn thiếu</span></div></div><div class="goal-actions"><button class="primary" onclick="openSaving(${goal.id})">＋ Góp tiền</button><button class="secondary" onclick="setPage('goals')">Chi tiết</button></div></div></div>`}else{$('#featuredGoal').innerHTML='<div class="empty">Bạn chưa có mục tiêu tiết kiệm. Hãy tạo mục tiêu đầu tiên!</div>'}
+ const budget=$('#budgetOverview');budget.innerHTML=categories.map(cat=>{let used=list.filter(t=>t.type==='expense'&&t.category===cat).reduce((a,t)=>a+t.amount,0),limit=data.budgets[cat]||0;if(!limit&&!used)return '';let pct=limit?used/limit*100:100;return `<div class="budget-row"><div class="budget-meta"><strong>${icons[cat]} ${cat}</strong><span>${money(used)} / ${money(limit)}</span></div><div class="bar"><span class="${pct>=100?'danger':pct>=80?'warn':''}" style="width:${Math.min(100,pct)}%"></span></div></div>`}).join('')||'<div class="empty">Chưa có dữ liệu ngân sách.</div>';
+ let recent=[...list].sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id).slice(0,5);$('#recentTransactions').innerHTML=recent.length?recent.map(txRow).join(''):'<tr><td colspan="4" class="empty">Chưa có giao dịch trong tháng này.</td></tr>';
+ const spent=s.expense,limits=Object.values(data.budgets).reduce((a,b)=>a+b,0),score=spent===0?0:Math.max(0,Math.min(100,Math.round((1-spent/Math.max(limits,1))*100)));setNum('#score',score,v=>Math.round(v));$('#scoreTitle').textContent=spent===0?'Bắt đầu hành trình nhé!':score>=70?'Bạn đang kiểm soát tốt!':score>=35?'Cố gắng thêm một chút!':'Hãy xem lại ngân sách nhé!';$('#scoreDesc').textContent=spent===0?'Ghi lại giao dịch để xem điểm tiết kiệm của bạn.':'Điểm tham khảo dựa trên mức chi so với tổng ngân sách tháng.';
+ animChart('cash',p=>drawCashChart(list,p));animateRings();
+}
+function txRow(t){let typ=t.type==='income'?'Thu nhập':t.type==='saving'?'Tiết kiệm':'Chi tiêu';let sign=t.type==='income'?'+':'−';return `<tr><td><div class="tx-name"><span class="tx-icon">${icons[t.category]||'📦'}</span>${esc(t.name)}</div></td><td>${fmtDate(t.date)}</td><td><span class="pill ${t.type==='income'?'in':t.type==='expense'?'out':''}">${typ}</span></td><td class="amount ${t.type}">${sign}${money(t.amount)}</td></tr>`}
+function drawCashChart(list,prog=1){const c=$('#cashChart'),ctx=c.getContext('2d'),w=c.clientWidth,h=c.clientHeight,dpr=devicePixelRatio||1;if(!w)return;c.width=w*dpr;c.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);let days=new Date(+selectedMonth.slice(0,4),+selectedMonth.slice(5,7),0).getDate(),income=Array(days).fill(0),expense=Array(days).fill(0);list.forEach(t=>{let d=+t.date.slice(8,10)-1;if(t.type==='income')income[d]+=+t.amount;if(t.type==='expense')expense[d]+=+t.amount});let max=Math.max(1,...income,...expense)*1.12,L=14,R=14,T=14,B=24,cw=w-L-R,ch=h-T-B;ctx.strokeStyle='#e9eef6';ctx.lineWidth=1;ctx.setLineDash([3,5]);for(let i=0;i<4;i++){let y=T+ch*i/3;ctx.beginPath();ctx.moveTo(L,y);ctx.lineTo(w-R,y);ctx.stroke()}ctx.setLineDash([]);const X=i=>L+(days===1?cw/2:i/(days-1)*cw),Y=v=>T+ch-v/max*ch;ctx.save();ctx.beginPath();ctx.rect(0,0,w*prog+2,h);ctx.clip();function draw(a,col,fill){ctx.beginPath();a.forEach((v,i)=>{let x=X(i),y=Y(v);if(!i)ctx.moveTo(x,y);else{let mx=(X(i-1)+x)/2;ctx.bezierCurveTo(mx,Y(a[i-1]),mx,y,x,y)}});ctx.strokeStyle=col;ctx.lineWidth=2.5;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke();ctx.lineTo(X(days-1),T+ch);ctx.lineTo(X(0),T+ch);ctx.closePath();let g=ctx.createLinearGradient(0,T,0,T+ch);g.addColorStop(0,fill);g.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=g;ctx.fill()}draw(expense,'#2f6bff','rgba(47,107,255,.2)');draw(income,'#0fa77c','rgba(15,167,124,.2)');ctx.restore();ctx.fillStyle='#8a99b0';ctx.font='500 10px "Be Vietnam Pro",sans-serif';ctx.textAlign='center';[1,Math.ceil(days/3),Math.ceil(days*2/3),days].forEach(d=>ctx.fillText(d,X(d-1),h-6))}
+function renderGoals(){const el=$('#goalsList');el.innerHTML=data.goals.length?data.goals.map(g=>{let p=g.target?g.current/g.target*100:0;return `<div class="card"><div class="goal-item">${ring(p,90)}<div style="flex:1"><h3>${esc(g.icon||'🎯')} ${esc(g.name)}</h3><p>Hạn hoàn thành: ${fmtDate(g.deadline)}</p><div class="goal-numbers"><div><b>${money(g.current)}</b><span>Đã có</span></div><div><b>${money(Math.max(0,g.target-g.current))}</b><span>Còn thiếu</span></div></div></div></div><div class="bar" style="margin-top:16px"><span style="width:${Math.min(100,p)}%"></span></div><div style="display:flex;justify-content:space-between;margin-top:13px"><button class="secondary" onclick="openSaving(${g.id})">＋ Góp tiền</button><button class="link-btn" onclick="editGoal(${g.id})">Chỉnh sửa</button></div></div>`}).join(''):'<div class="card empty" style="grid-column:1/-1">Chưa có mục tiêu nào. Tạo mục tiêu đầu tiên để bắt đầu tiết kiệm nhé!</div>';animateRings()}
+function renderTransactions(){let q=$('#searchTx').value.toLowerCase(),type=$('#typeFilter').value,cat=$('#categoryFilter').value;let arr=[...txs()].filter(t=>(type==='all'||t.type===type)&&(cat==='all'||t.category===cat)&&(`${t.name} ${t.note} ${t.category}`.toLowerCase().includes(q))).sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id);$('#allTransactions').innerHTML=arr.length?arr.map(t=>`<tr><td><strong>${esc(t.name)}</strong>${t.note?`<div class="small-note">${esc(t.note)}</div>`:''}</td><td>${esc(t.category)}</td><td>${fmtDate(t.date)}</td><td><span class="pill ${t.type==='income'?'in':t.type==='expense'?'out':''}">${t.type==='income'?'Thu nhập':t.type==='saving'?'Tiết kiệm':'Chi tiêu'}</span></td><td class="amount ${t.type}">${t.type==='income'?'+':'−'}${money(t.amount)}</td><td><button class="link-btn" onclick="deleteTx(${t.id})">Xóa</button></td></tr>`).join(''):'<tr><td colspan="6" class="empty">Không tìm thấy giao dịch phù hợp.</td></tr>'}
+function renderCalendar(){let y=calendarDate.getFullYear(),m=calendarDate.getMonth(),first=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate();$('#calendarMonth').textContent=`Tháng ${m+1}/${y}`;let names=['CN','T2','T3','T4','T5','T6','T7'];let html=names.map(n=>`<div class="day-name">${n}</div>`).join('');for(let i=0;i<first;i++)html+='<div></div>';for(let d=1;d<=days;d++){let date=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`,daytx=data.transactions.filter(t=>t.date===date),out=daytx.filter(t=>t.type==='expense').reduce((a,t)=>a+t.amount,0),inc=daytx.filter(t=>t.type==='income').reduce((a,t)=>a+t.amount,0);html+=`<div class="day ${date===today()?'today':''}"><strong>${d}</strong>${out?`<small>−${shortMoney(out)}</small>`:''}${inc?`<small class="in-small">+${shortMoney(inc)}</small>`:''}</div>`}$('#calendarGrid').innerHTML=html;let list=data.transactions.filter(t=>monthKey(t.date)===`${y}-${String(m+1).padStart(2,'0')}`),s=sums(list);$('#calendarSummary').innerHTML=`<div class="setting-row"><span>Thu nhập</span><strong class="positive">${money(s.income)}</strong></div><div class="setting-row"><span>Chi tiêu</span><strong class="negative">${money(s.expense)}</strong></div><div class="setting-row"><span>Tiết kiệm</span><strong>${money(s.saving)}</strong></div><div class="setting-row"><span>Số giao dịch</span><strong>${list.length}</strong></div>`}
+function renderStats(){let list=txs(),s=sums(list),rate=s.income?Math.round((s.saving/ s.income)*100):0;setNum('#statIncome',s.income);setNum('#statExpense',s.expense);setNum('#savingRate',rate,v=>Math.round(v)+'%');setNum('#txCount',list.length,v=>Math.round(v));let cats=categories.map(c=>({c,v:list.filter(t=>t.type==='expense'&&t.category===c).reduce((a,t)=>a+t.amount,0)})).filter(x=>x.v).sort((a,b)=>b.v-a.v);animChart('cat',p=>drawCategoryChart(cats,p));$('#categoryLegend').innerHTML=cats.length?cats.map(x=>`<div class="budget-row"><div class="budget-meta"><strong>${icons[x.c]} ${x.c}</strong><span>${money(x.v)} · ${Math.round(x.v/(s.expense||1)*100)}%</span></div><div class="bar"><span style="width:${x.v/(s.expense||1)*100}%"></span></div></div>`).join(''):'<div class="empty">Chưa có khoản chi để thống kê.</div>';let highest=cats[0];$('#insights').innerHTML=`<div class="score-box"><div class="score-number">💡</div><div><h4>${highest?'Danh mục chi nhiều nhất: '+highest.c:'Bắt đầu ghi chép'}</h4><p>${highest?'Bạn đã chi '+money(highest.v)+' cho danh mục này trong tháng.':'Thêm giao dịch để SaveMate phân tích thói quen chi tiêu.'}</p></div></div><div class="setting-row"><span>Chi tiêu trung bình/giao dịch</span><strong>${money(s.expense/(list.filter(t=>t.type==='expense').length||1))}</strong></div><div class="setting-row"><span>Thu nhập chưa phân bổ</span><strong>${money(Math.max(0,s.income-s.expense-s.saving))}</strong></div><p class="small-note">Gợi ý chỉ mang tính tham khảo, dựa trên dữ liệu bạn nhập.</p>`}
+function drawCategoryChart(cats,prog=1){let c=$('#categoryChart'),ctx=c.getContext('2d'),w=c.clientWidth,h=c.clientHeight,dpr=devicePixelRatio||1;if(!w)return;c.width=w*dpr;c.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);let total=cats.reduce((a,x)=>a+x.v,0);ctx.textAlign='center';if(!total){ctx.fillStyle='#9aa8b7';ctx.font='13px "Be Vietnam Pro",sans-serif';ctx.fillText('Chưa có dữ liệu chi tiêu',w/2,h/2);return}let colors=['#2f6bff','#0fa77c','#f5a524','#8b5cf6','#ef5b5b','#14b8c4','#ec7bb0','#8a99b0'],x=w/2,y=h/2,r=Math.min(82,h/2-6),a=-Math.PI/2,gap=cats.length>1?.04:0;cats.forEach((v,i)=>{let span=v.v/total*Math.PI*2*prog,st=a+gap/2,e=a+span-gap/2;if(e>st){ctx.beginPath();ctx.arc(x,y,r,st,e);ctx.arc(x,y,r*.64,e,st,true);ctx.closePath();ctx.fillStyle=colors[i%colors.length];ctx.fill()}a+=span});ctx.fillStyle='#0f2440';ctx.font='700 19px "Bricolage Grotesque",sans-serif';ctx.fillText(shortMoney(total),x,y+3);ctx.fillStyle='#7a8aa3';ctx.font='11px "Be Vietnam Pro",sans-serif';ctx.fillText('Tổng chi',x,y+20)}
+function renderSettings(){ $('#budgetSettings').innerHTML=categories.map(c=>`<div class="setting-row"><span>${icons[c]} ${c}</span><strong>${money(data.budgets[c]||0)}</strong></div>`).join('');$('#goalCount').textContent=data.goals.length;$('#transactionCount').textContent=data.transactions.length}
+function render(){fillMonth();renderCountdownBar();renderDashboard();renderGoals();renderTransactions();renderSettings();if($('#calendar').classList.contains('active'))renderCalendar();if($('#statistics').classList.contains('active'))renderStats();if($('#exams').classList.contains('active'))renderExams()}
+
+const weekdayNames=['Chủ nhật','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'];
+const weekdayShort=['CN','T2','T3','T4','T5','T6','T7'];
+function dateObj(s){let [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}
+function dateStr(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function mondayOf(s){let d=dateObj(s),day=d.getDay();d.setDate(d.getDate()+(day===0?-6:1-day));return d}
+function scheduleForDate(s){let day=dateObj(s).getDay();return data.schedule.filter(x=>+x.day===day).sort((a,b)=>(a.start||'').localeCompare(b.start||''))}
+function scheduleDoneKey(itemId,s){return `${s}_${itemId}`}
+function scheduleIsDone(itemId,s){return !!data.scheduleDone[scheduleDoneKey(itemId,s)]}
+function renderSchedule(){
+  if(!$('#scheduleDate'))return;
+  $('#scheduleDate').value=selectedScheduleDate;
+  const items=scheduleForDate(selectedScheduleDate),done=items.filter(x=>scheduleIsDone(x.id,selectedScheduleDate)).length,pct=items.length?Math.round(done/items.length*100):0;
+  setNum('#scheduleTotal',items.length,v=>Math.round(v));setNum('#scheduleDone',done,v=>Math.round(v));setNum('#schedulePercent',pct,v=>Math.round(v)+'%');$('#scheduleProgressBar').style.width=pct+'%';
+  $('#dailyViewBtn').classList.toggle('active',scheduleView==='daily');$('#weeklyViewBtn').classList.toggle('active',scheduleView==='weekly');
+  $('#dailyScheduleView').style.display=scheduleView==='daily'?'block':'none';$('#weeklyScheduleView').style.display=scheduleView==='weekly'?'block':'none';
+  const d=dateObj(selectedScheduleDate);
+  $('#scheduleRangeLabel').textContent=scheduleView==='daily'?`${weekdayNames[d.getDay()]}, ${fmtDate(selectedScheduleDate)}`:`Tuần ${fmtDate(dateStr(mondayOf(selectedScheduleDate)))} – ${fmtDate(dateStr(new Date(mondayOf(selectedScheduleDate).getFullYear(),mondayOf(selectedScheduleDate).getMonth(),mondayOf(selectedScheduleDate).getDate()+6)))}`;
+  $('#dailyScheduleList').innerHTML=items.length?items.map(x=>{let isDone=scheduleIsDone(x.id,selectedScheduleDate);return `<div class="schedule-item ${isDone?'done':''}"><div class="schedule-time">${esc(x.start)}<br>↓<br>${esc(x.end)}</div><div class="schedule-line"></div><div><div class="schedule-title">${esc(x.title)}</div><div class="schedule-meta">${esc(x.category||'Cá nhân')}</div></div><div class="schedule-actions"><button class="${isDone?'complete':''}" onclick="toggleScheduleDone(${x.id})">${isDone?'✓ Hoàn thành':'Đánh dấu xong'}</button><button onclick="editSchedule(${x.id})">Sửa</button><button onclick="deleteSchedule(${x.id})">Xóa</button></div></div>`}).join(''):'<div class="empty">Chưa có hoạt động nào trong ngày này. Nhấn “Thêm hoạt động” để lên lịch nhé!</div>';
+  const monday=mondayOf(selectedScheduleDate),days=Array.from({length:7},(_,i)=>{let z=new Date(monday);z.setDate(z.getDate()+i);return z});
+  $('#weeklyScheduleGrid').innerHTML=days.map(z=>{let ds=dateStr(z),list=scheduleForDate(ds),isToday=ds===today();return `<div class="week-day ${isToday?'today':''}"><div class="week-day-head"><span>${weekdayShort[z.getDay()]}</span><strong>${z.getDate()}</strong></div>${list.length?list.map(x=>`<div class="week-event ${scheduleIsDone(x.id,ds)?'done':''}"><b>${esc(x.start)}–${esc(x.end)}</b>${esc(x.title)}</div>`).join(''):'<div class="small-note">Chưa có lịch</div>'}<button class="schedule-day-link" onclick="selectScheduleDate('${ds}')">Xem ngày →</button></div>`}).join('');
+}
+function selectScheduleDate(s){selectedScheduleDate=s;renderSchedule()}
+function openScheduleForm(item=null){
+  const day=item?+item.day:dateObj(selectedScheduleDate).getDay();
+  openModal(item?'Chỉnh sửa hoạt động':'Thêm hoạt động',`
+  <div class="field full"><label>Tên hoạt động</label><input name="title" required maxlength="80" value="${esc(item?.title||'')}" placeholder="Ví dụ: Học Vi tích phân, đi tập..."></div>
+  <div class="field"><label>Thứ trong tuần</label><select name="day">${weekdayNames.map((n,i)=>`<option value="${i}" ${day===i?'selected':''}>${n}</option>`).join('')}</select></div>
+  <div class="field"><label>Danh mục</label><select name="category">${['Học tập','Công việc','Thể thao','Ăn uống','Nghỉ ngơi','Cá nhân','Khác'].map(c=>`<option ${item?.category===c?'selected':''}>${c}</option>`).join('')}</select></div>
+  <div class="field"><label>Bắt đầu</label><input name="start" type="time" required value="${esc(item?.start||'08:00')}"></div>
+  <div class="field"><label>Kết thúc</label><input name="end" type="time" required value="${esc(item?.end||'09:00')}"></div>`,f=>{
+    let v=Object.fromEntries(new FormData(f));
+    if(v.end<=v.start){notify('Giờ kết thúc phải sau giờ bắt đầu.');return}
+    v.day=+v.day;
+    if(item)Object.assign(item,v);else data.schedule.push({...v,id:Date.now()});
+    save();notify(item?'Đã cập nhật hoạt động!':'Đã thêm hoạt động vào thời khóa biểu!');
+  });
+}
+function editSchedule(id){let item=data.schedule.find(x=>x.id===id);if(item)openScheduleForm(item)}
+function deleteSchedule(id){if(!confirm('Xóa hoạt động này khỏi thời khóa biểu lặp hằng tuần?'))return;data.schedule=data.schedule.filter(x=>x.id!==id);Object.keys(data.scheduleDone).forEach(k=>{if(k.endsWith('_'+id))delete data.scheduleDone[k]});save();notify('Đã xóa hoạt động.')}
+function toggleScheduleDone(id){let key=scheduleDoneKey(id,selectedScheduleDate);if(data.scheduleDone[key])delete data.scheduleDone[key];else data.scheduleDone[key]=true;save()}
+
+function daysUntil(date){const [y,m,d]=date.split('-').map(Number);const target=new Date(y,m-1,d);const now=new Date();now.setHours(0,0,0,0);return Math.round((target-now)/86400000)}
+function examTone(days){
+  if(days<0)return {color:'#64748b',bg:'#f1f5f9',border:'#cbd5e1',barBg:'linear-gradient(135deg,#f1f5f9,#f8fafc)',shadow:'rgba(100,116,139,.2)',sub:'#475569',label:'Đã qua ngày thi'};
+  if(days<=3)return {color:'#dc2626',bg:'#fff0f0',border:'#fca5a5',barBg:'linear-gradient(135deg,#fef2f2,#fff8f8)',shadow:'rgba(220,38,38,.25)',sub:'#991b1b',label:'Rất cận ngày thi'};
+  if(days<=7)return {color:'#ea580c',bg:'#fff4e8',border:'#fdba74',barBg:'linear-gradient(135deg,#fff7ed,#fffbf5)',shadow:'rgba(234,88,12,.25)',sub:'#9a3412',label:'Sắp đến ngày thi'};
+  if(days<=14)return {color:'#ca8a04',bg:'#fefce8',border:'#fde047',barBg:'linear-gradient(135deg,#fefce8,#fffef5)',shadow:'rgba(202,138,4,.24)',sub:'#854d0e',label:'Đang đến gần'};
+  return {color:'#2f6bff',bg:'#eff4ff',border:'#bfd4ff',barBg:'linear-gradient(135deg,#eff4ff,#f8faff)',shadow:'rgba(47,107,255,.24)',sub:'#1e40af',label:'Còn thời gian ôn tập'};
+}
+function sortedExams(){
+  const all=[...(data.exams||[])];
+  const upcoming=all.filter(e=>daysUntil(e.date)>=0).sort((a,b)=>a.date.localeCompare(b.date)||a.id-b.id);
+  const past=all.filter(e=>daysUntil(e.date)<0).sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id);
+  return [...upcoming,...past];
+}
+function cycleExamBar(dir,ev){
+  if(ev)ev.stopPropagation();
+  const list=sortedExams();
+  if(list.length<=1)return;
+  examBarIndex=(examBarIndex+dir+list.length)%list.length;
+  renderCountdownBar();
+}
+function renderCountdownBar(){
+  const bar=$('#examCountdownBar');
+  if(!bar)return;
+  const list=sortedExams();
+  if(!list.length){
+    bar.style.setProperty('--bar-bg','linear-gradient(135deg,#eff4ff,#f8faff)');
+    bar.style.setProperty('--bar-border','#bfd4ff');
+    bar.style.setProperty('--bar-accent','#2f6bff');
+    bar.style.setProperty('--bar-shadow','rgba(47,107,255,.22)');
+    bar.style.setProperty('--bar-sub','#3b5272');
+    bar.innerHTML=`
+      <div class="exam-bar-left">
+        <div class="exam-bar-ico"><svg class="i"><use href="#i-clock"/></svg></div>
+        <div class="exam-bar-info">
+          <span class="exam-bar-title">Chưa có lịch thi nào</span>
+          <span class="exam-bar-date"><svg class="i"><use href="#i-cal"/></svg> Nhấn để thêm ngày thi và đếm ngược</span>
+        </div>
+      </div>
+      <div class="exam-bar-right"><span class="exam-bar-cta">＋ Thêm kỳ thi →</span></div>`;
+    return;
+  }
+  if(examBarIndex>=list.length)examBarIndex=0;
+  const e=list[examBarIndex],days=daysUntil(e.date),tone=examTone(days);
+  const badgeText=days<0?'Đã qua ngày thi':days===0?'Hôm nay thi!':`Còn ${days} ngày`;
+  bar.style.setProperty('--bar-bg',tone.barBg);
+  bar.style.setProperty('--bar-border',tone.border);
+  bar.style.setProperty('--bar-accent',tone.color);
+  bar.style.setProperty('--bar-shadow',tone.shadow);
+  bar.style.setProperty('--bar-sub',tone.sub);
+  const switcher=list.length>1?`
+    <div class="exam-bar-nav" onclick="event.stopPropagation()">
+      <button type="button" onclick="cycleExamBar(-1,event)" title="Kỳ thi trước" aria-label="Kỳ thi trước">‹</button>
+      <span>${examBarIndex+1}/${list.length}</span>
+      <button type="button" onclick="cycleExamBar(1,event)" title="Kỳ thi tiếp theo" aria-label="Kỳ thi tiếp theo">›</button>
+    </div>`:'';
+  bar.innerHTML=`
+    <div class="exam-bar-left">
+      <div class="exam-bar-ico"><svg class="i"><use href="#i-clock"/></svg></div>
+      <div class="exam-bar-info">
+        <span class="exam-bar-title">${esc(e.icon||'📝')} ${esc(e.name)}</span>
+        <span class="exam-bar-badge">${badgeText}</span>
+        <span class="exam-bar-date"><svg class="i"><use href="#i-cal"/></svg> ${fmtDate(e.date)}</span>
+      </div>
+    </div>
+    <div class="exam-bar-right">
+      ${switcher}
+      <span class="exam-bar-cta">Quản lý kỳ thi →</span>
+    </div>`;
+}
+function renderExams(){const list=sortedExams();$('#examEmpty').style.display=list.length?'none':'block';$('#examList').innerHTML=list.map(e=>{const days=daysUntil(e.date),tone=examTone(days);let count=days<0?`Đã qua <small>${Math.abs(days)} ngày</small>`:days===0?'HÔM NAY':`${days} <small>ngày nữa</small>`;return `<article class="card exam-card" style="--exam-color:${tone.color};--exam-bg:${tone.bg};--exam-border:${tone.border}"><div class="exam-top"><span class="exam-tag">${tone.label}</span><span>${esc(e.icon||'📝')}</span></div><div class="exam-count">${count}</div><div class="exam-name">${esc(e.name)}</div><div class="exam-date">📅 ${fmtDate(e.date)}${e.note?` · ${esc(e.note)}`:''}</div><div class="exam-actions"><button onclick="editExam(${e.id})">✎ Chỉnh sửa</button><button class="delete-exam" onclick="deleteExam(${e.id})">Xóa</button></div></article>`}).join('')}
+function openExamForm(exam=null){openModal(exam?'Chỉnh sửa ngày thi':'Tạo ngày thi',`<div class="field full"><label>Tên kỳ thi / môn học</label><input name="name" required maxlength="90" value="${esc(exam?.name||'')}" placeholder="Ví dụ: Thi Vi tích phân 1B"></div><div class="field"><label>Ngày thi</label><input name="date" type="date" required value="${exam?.date||today()}"></div><div class="field"><label>Biểu tượng</label><select name="icon">${['📝','📐','⚛️','💻','🎓','📚','🧪','🏆'].map(i=>`<option ${exam?.icon===i?'selected':''}>${i}</option>`).join('')}</select></div><div class="field full"><label>Ghi chú (không bắt buộc)</label><input name="note" maxlength="100" value="${esc(exam?.note||'')}" placeholder="Ví dụ: Phòng A, ca sáng..."></div>`,f=>{const v=Object.fromEntries(new FormData(f));if(exam)Object.assign(exam,v);else data.exams.push({...v,id:Date.now()});examBarIndex=0;save();renderExams();notify(exam?'Đã cập nhật ngày thi!':'Đã thêm ngày thi!')})}
+function editExam(id){const e=data.exams.find(x=>x.id===id);if(e)openExamForm(e)}
+function deleteExam(id){if(!confirm('Xóa kỳ thi này?'))return;data.exams=data.exams.filter(x=>x.id!==id);examBarIndex=0;save();renderExams();notify('Đã xóa kỳ thi.')}
+
+const reduceMotion=()=>matchMedia('(prefers-reduced-motion:reduce)').matches;
+function setNum(sel,val,fmt=money){const el=$(sel);if(!el)return;const from=el._v??0,to=+val||0;el._v=to;cancelAnimationFrame(el._r);if(from===to||reduceMotion()){el.textContent=fmt(to);return}let t0=null;const st=t=>{t0??=t;let p=Math.min(1,(t-t0)/1000),e=1-Math.pow(1-p,4);el.textContent=fmt(from+(to-from)*e);if(p<1)el._r=requestAnimationFrame(st)};el._r=requestAnimationFrame(st)}
+const _anim={};
+function animChart(k,fn){cancelAnimationFrame(_anim[k]);if(reduceMotion()){fn(1);return}let t0=null;const st=t=>{t0??=t;let p=Math.min(1,(t-t0)/1200);fn(1-Math.pow(1-p,3));if(p<1)_anim[k]=requestAnimationFrame(st)};_anim[k]=requestAnimationFrame(st)}
+function animateRings(){requestAnimationFrame(()=>requestAnimationFrame(()=>$$('.ring-fg').forEach(e=>e.style.strokeDashoffset=e.dataset.off)))}
+function moveNav(){const a=$('.nav button.active'),n=$('.nav');if(a&&n){n.style.setProperty('--iy',a.offsetTop+'px');n.style.setProperty('--ih',a.offsetHeight+'px')}}
+
+function fmtDate(s){if(!s)return '';let [y,m,d]=s.split('-');return `${d}/${m}/${y}`}
+function shortMoney(n){return n>=1e6?(n/1e6).toFixed(1)+'tr':n>=1e3?Math.round(n/1e3)+'k':n}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function openModal(title,fields,onSave){modalMode=onSave;$('#modalTitle').textContent=title;$('#modalFields').innerHTML=fields;$('#modalBackdrop').classList.add('show')}
+function closeModal(){$('#modalBackdrop').classList.remove('show');$('#modalForm').reset();modalMode=''}
+function openTransaction(){openModal('Thêm giao dịch',`<div class="field full"><label>Tên giao dịch</label><input name="name" required placeholder="Ví dụ: Ăn trưa, tiền lương..."></div><div class="field"><label>Loại giao dịch</label><select name="type"><option value="expense">Chi tiêu</option><option value="income">Thu nhập</option><option value="saving">Tiết kiệm</option></select></div><div class="field"><label>Số tiền (VND)</label><input name="amount" type="number" min="1" required placeholder="50000"></div><div class="field"><label>Danh mục</label><select name="category">${['Ăn uống','Đi lại','Học tập','Mua sắm','Giải trí','Nhà cửa','Sức khỏe','Khác','Lương','Thưởng','Thu nhập khác','Tiết kiệm'].map(c=>`<option>${c}</option>`).join('')}</select></div><div class="field"><label>Ngày</label><input name="date" type="date" value="${today()}" required></div><div class="field full"><label>Ghi chú (không bắt buộc)</label><input name="note" placeholder="Thêm mô tả..."></div>`,f=>{let t=Object.fromEntries(new FormData(f));data.transactions.push({...t,id:Date.now(),amount:+t.amount});save();notify('Đã thêm giao dịch!')})}
+function openGoal(g=null){openModal(g?'Chỉnh sửa mục tiêu':'Tạo mục tiêu tiết kiệm',`<div class="field full"><label>Tên mục tiêu</label><input name="name" required value="${esc(g?.name||'')}" placeholder="Ví dụ: Mua laptop"></div><div class="field"><label>Số tiền mục tiêu (VND)</label><input name="target" type="number" min="1" required value="${g?.target||''}"></div><div class="field"><label>Đã tiết kiệm (VND)</label><input name="current" type="number" min="0" value="${g?.current||0}"></div><div class="field"><label>Biểu tượng</label><select name="icon">${['🎯','💻','🎓','✈️','🛟','🚲','📱','🏡'].map(i=>`<option ${g?.icon===i?'selected':''}>${i}</option>`).join('')}</select></div><div class="field"><label>Thời hạn</label><input name="deadline" type="date" value="${g?.deadline||new Date(new Date().setMonth(new Date().getMonth()+3)).toISOString().slice(0,10)}" required></div>`,f=>{let v=Object.fromEntries(new FormData(f));v.target=+v.target;v.current=+v.current;if(g)Object.assign(g,v);else data.goals.push({...v,id:Date.now()});save();notify(g?'Đã cập nhật mục tiêu!':'Đã tạo mục tiêu mới!')})}
+function openSaving(id){let g=data.goals.find(x=>x.id===id);if(!g)return;openModal('Góp tiền vào mục tiêu',`<div class="field full"><label>Mục tiêu</label><input value="${esc(g.name)}" disabled></div><div class="field full"><label>Số tiền muốn góp (VND)</label><input name="amount" type="number" min="1" required placeholder="100000"></div><div class="field full"><label>Ngày góp</label><input name="date" type="date" value="${today()}" required></div>`,f=>{let v=Object.fromEntries(new FormData(f)),amount=+v.amount;g.current+=amount;data.transactions.push({id:Date.now(),name:'Góp mục tiêu: '+g.name,category:'Tiết kiệm',type:'saving',amount,date:v.date,note:''});save();notify('Đã cập nhật tiến độ tiết kiệm!')})}
+function editGoal(id){let g=data.goals.find(x=>x.id===id);openGoal(g)}
+function deleteTx(id){if(!confirm('Xóa giao dịch này?'))return;data.transactions=data.transactions.filter(t=>t.id!==id);save();notify('Đã xóa giao dịch.')}
+function editBudgets(){openModal('Thiết lập ngân sách tháng',categories.map(c=>`<div class="field"><label>${icons[c]} ${c} (VND)</label><input type="number" min="0" name="${c}" value="${data.budgets[c]||0}"></div>`).join(''),f=>{let v=Object.fromEntries(new FormData(f));categories.forEach(c=>data.budgets[c]=+v[c]||0);save();notify('Đã cập nhật ngân sách!')})}
+$$('.nav button').forEach(b=>b.addEventListener('click',()=>setPage(b.dataset.page)));$$('[data-goto]').forEach(b=>b.addEventListener('click',()=>setPage(b.dataset.goto)));
+$('#examCountdownBar').addEventListener('click',()=>setPage('exams'));
+$('#examCountdownBar').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setPage('exams')}});
+$('#monthFilter').addEventListener('change',e=>{selectedMonth=e.target.value;render()});
+
+$('#addScheduleBtn').onclick=()=>openScheduleForm();
+$('#addExamBtn').onclick=()=>openExamForm();
+$('#dailyViewBtn').onclick=()=>{scheduleView='daily';renderSchedule()};
+$('#weeklyViewBtn').onclick=()=>{scheduleView='weekly';renderSchedule()};
+$('#scheduleDate').addEventListener('change',e=>{if(e.target.value){selectedScheduleDate=e.target.value;renderSchedule()}});
+$('#schedulePrev').onclick=()=>{let d=dateObj(selectedScheduleDate);d.setDate(d.getDate()+(scheduleView==='weekly'?-7:-1));selectedScheduleDate=dateStr(d);renderSchedule()};
+$('#scheduleNext').onclick=()=>{let d=dateObj(selectedScheduleDate);d.setDate(d.getDate()+(scheduleView==='weekly'?7:1));selectedScheduleDate=dateStr(d);renderSchedule()};
+
+$('#addTransactionBtn').onclick=openTransaction;$('#calendarAdd').onclick=openTransaction;$('#addGoalBtn').onclick=()=>openGoal();$('#editBudgetBtn').onclick=editBudgets;
+$('#searchTx').addEventListener('input',renderTransactions);$('#typeFilter').addEventListener('change',renderTransactions);$('#categoryFilter').innerHTML+=[...categories,'Lương','Thưởng','Thu nhập khác','Tiết kiệm'].map(c=>`<option>${c}</option>`).join('');$('#categoryFilter').addEventListener('change',renderTransactions);
+$('#prevMonth').onclick=()=>{calendarDate.setMonth(calendarDate.getMonth()-1);renderCalendar()};$('#nextMonth').onclick=()=>{calendarDate.setMonth(calendarDate.getMonth()+1);renderCalendar()};
+$('#closeModal').onclick=closeModal;$('#cancelModal').onclick=closeModal;$('#modalBackdrop').addEventListener('click',e=>{if(e.target.id==='modalBackdrop')closeModal()});$('#modalForm').addEventListener('submit',e=>{e.preventDefault();if(typeof modalMode==='function')modalMode(e.target);closeModal()});
+$('#resetData').onclick=()=>{if(confirm('Bạn chắc chắn muốn xóa toàn bộ giao dịch, mục tiêu, ngân sách, thời khóa biểu và ngày thi đã lưu?')){data={transactions:[],goals:[],budgets:{...defaultData.budgets},schedule:[],scheduleDone:{},exams:[]};examBarIndex=0;save();notify('Đã đặt lại dữ liệu.')}};
+function init(){let h=new Date().getHours();$('#greeting').textContent=h<11?'Chào buổi sáng':h<18?'Chào buổi chiều':'Chào buổi tối';render();moveNav();document.fonts?.ready.then(moveNav);window.addEventListener('resize',()=>{moveNav();if($('#dashboard').classList.contains('active'))drawCashChart(txs());if($('#statistics').classList.contains('active'))renderStats()})}
+init();
+</script>
+</body>
+</html>
